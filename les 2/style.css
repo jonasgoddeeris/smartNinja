@@ -1,1 +1,64 @@
-style.css
+.green-text {
+    color: green;
+/*    position: absolute;*/
+}
+
+.blue-text {
+    color: blue;
+}
+
+
+
+
+.molen {
+
+  width: 100px;
+  height: 100px;
+  background-color: #0CB1C4;
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+  /* transform: rotate(3deg); */
+   /* transform: rotate(0.3rad);/ */
+   /* transform: rotate(3grad); */ 
+   /* transform: rotate(.03turn);  */
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+
+
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple:hover {
+  background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+}
+.ripple:active {
+  background-color: #6eb9f7;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+/* Button style */
+button {
+  border: none;
+  border-radius: 2px;
+  padding: 12px 18px;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: white;
+  background-color: #2196f3;
+  box-shadow: 0 0 4px #999;
+  outline: none;
+}
