@@ -1,4 +1,4 @@
-console.log("anotherJS");
+// console.log("anotherJS");
 
 let anotherVar = "Hey, I'm from another file!";
 
@@ -19,9 +19,9 @@ let anotherVar = "Hey, I'm from another file!";
 // lijst om 
 
 
-list student ["jonas", "Yves", "Samatha"];
+let student = ["jonas", "Yves", "Samatha"];
 
-list studentPoints 
+// list studentPoints 
 
 
 
