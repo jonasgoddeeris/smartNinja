@@ -1,16 +1,15 @@
-let number = 1;
+let num = 1;
 
-while (number < 30) {
-    
-        if (number%3 === 0 && number%5 === 0) { console.log("FizzBuzz");
-    } else if (number%3 === 0 && number%5 !== 0) {
+while (num < 30) {
+    if (num % 3 === 0 && num % 5 === 0) { console.log("FizzBuzz");
+    } else if (num % 3 === 0 && num % 5 !== 0) {
     console.log("Fizz");
-    } else if (number%3 !== 0 && number%5 === 0) {
+    } else if (num % 3 !== 0 && num % 5 === 0) {
     console.log("Buzz");    
     } else {
-    console.log(number);
+    console.log(num);
     }
-    number++;
+    num++;
 }
 
 
