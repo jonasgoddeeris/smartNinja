@@ -36,7 +36,7 @@ die heeft u interpreter nodug om te weten welk stukje code bij elkaar hoort.
 */
 
 
-
+let a = 0
 let num = 22;
 let someName = "Matt";
 let bool = false;
@@ -177,6 +177,7 @@ for (let a = 0; a < 5; a++) {
 console.log("Outside of for loop (let): " + a);  // should throw an error
 
 
+let anotherVar= 0
 
 console.log(anotherVar);
 

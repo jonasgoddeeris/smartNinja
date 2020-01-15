@@ -19,7 +19,7 @@ let anotherVar = "Hey, I'm from another file!";
 // lijst om 
 
 
-list student ["jonas", "Yves", "Samatha"]
+list student ["jonas", "Yves", "Samatha"];
 
 list studentPoints 
 
