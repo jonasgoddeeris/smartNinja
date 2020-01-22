@@ -42,19 +42,44 @@
 // -----JUST ADDITION------
 
 let submitButton = document.getElementById("submit");
-submitButton.addEventListener("click", addition);
+submitButton.addEventListener("click", calculation);
 
-let num = "Je resultaat";
+var num = "Je resultaat";
 document.getElementById("result").innerHTML = num;
 
-function addition() {
+function calculation() {
 	let x = Number(document.getElementById("input1").value);
 	console.log("x = " + x);
 	console.log(Number.isInteger(x));
 	let y = Number(document.getElementById("input2").value);
 	console.log("y = " + y);
 	console.log(Number.isInteger(y));
-	let num = x + y;
+	let operator = document.getElementById("inputOperator").value;
+	console.log("operator = " + operator);
+
+	if (operator === "-") {
+		var num = x - y;
+		console.log(num);
+		document.getElementById("result").innerHTML = num;
+	} else if (operator === "+") {
+		var num = x + y;
+		console.log(num);
+		document.getElementById("result").innerHTML = num;
+	} else if (operator === "/") {
+		var num = x / y;
+		console.log(num);
+		document.getElementById("result").innerHTML = num;
+	} else if (operator === "x" || operator === "*" ) {
+		var num = x * y;
+		console.log(num);
+		document.getElementById("result").innerHTML = num;
+	} else {
+		var num = "Kan niet berekenen";
+		console.log("kan niet berekenen");
+	};
+
+
+
 	console.log(num);
 	document.getElementById("result").innerHTML = num;
 };

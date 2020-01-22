@@ -7,47 +7,8 @@
     color: blue;
 }
 
-.black {
- /* background-color: black !important;*/
-  margin: 10%;
-}
-
-.black2 {
-  background-color: black !important;
-  margin: 10%;
-}
-
-button#plus {
-    margin-top: 20%;
-}
 
 
-
-.result {
-  margin: 25%;
-}
-
-.calbtn {
-    margin-bottom: 3px;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    background-color: orange !important;
-    width: 100%;
-}
-
-.blck{
-  background-color : white !important;
-    color: grey !important;
-    margin-bottom: 5px;
-
-}
-
-.nmbtn {
-    background-color: lightgrey;
-    padding: 10px;
-    border-radius: 100%;
-    text-align: center;
-}
 
 .molen {
 
