@@ -1,0 +1,29 @@
+.green-text {
+  color : green;
+
+}
+
+.body {
+
+margin-left: 30px;
+
+}
+
+
+.center-body {
+  margin : 2em;
+}
+
+.hideUntillRight {
+ display : none;
+ max-height: 293px;
+ max-width: 293px
+ margin : auto;
+ align-content: center;
+}
+
+
+.result {
+ margin : auto;
+ align-content: center;
+}
