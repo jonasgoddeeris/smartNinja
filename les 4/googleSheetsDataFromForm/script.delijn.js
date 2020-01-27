@@ -8,17 +8,15 @@ submitButton.addEventListener("click", checkResponse);
 
 function checkResponse() {
 
-	event.preventDefault();
-	console.log("start");
-const feedbackValue = document.getElementById("textarea1").value;
-console.log(feedbackValue);
+event.preventDefault();
+var feedbackValue = document.getElementById("textarea1").value;
 var fullDate = new Date();
 var dd = String(fullDate.getDate()).padStart(2, '0');
 var mm = String(fullDate.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = fullDate.getFullYear();
 var today = dd + '/' + mm + '/' + yyyy;
-let page = window.location.pathname;
-const data = { input: feedbackValue, timeStamp: fullDate, dateOnly: today, page: page };
+var page = window.location.pathname;
+var data = { input: feedbackValue, timeStamp: fullDate, dateOnly: today, page: page };
 
 
 fetch('https://hooks.zapier.com/hooks/catch/3106303/oh0og6m/', {
