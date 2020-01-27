@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>DOM example</title>
+        <link rel="stylesheet" href="style.css">
+
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+
+         <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+    </head>
+
+    <body>
+		<h1 id="hello" class="ninja green-text">Hello, ninja ID!</h1>
+
+		<button class="ripple" onclick="changeToBlue()">Toggle text blue</button>
+
+
+<button id="change-ball-to-blue">make ball blue</button>
+
+
+
+<button id="square">make rotating square walk right</button>
+
+
+
+<button class="mdc-button">
+  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__label">Button</span>
+</button>
+
+
+<button class="demo-button mdc-button mdc-button--raised mdc-ripple-upgraded"><span class="mdc-button__ripple"></span><span class="mdc-button__label">Default</span></button>
+
+
+
+<button class="foo-button mdc-button">Button</button>
+
+
+<!-- 		id refereert naar iets uniek = ID is dus altijd uniek
+		op moment dat id niet uniek verliest ID dus zijn waarde -->
+<!-- 		een class wordt net gebruikt voor meerdere elementen dezelfde style te geven -->
+
+
+<svg>
+  <circle  id="ballBlue" style="fill: #69b3a2" stroke="black" cx=50 cy=50 r=40></circle>
+</svg>
+
+
+
+
+
+        <div id="circle"></div>
+
+        <div class="molen"></div>
+
+
+
+        https://www.dashingd3js.com/lessons/d3-transition-basics
+
+
+
+
+        <div class="component-wrapper text-field-component-wrapper text-field-component-wrapper-1">
+              <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-trailing-icon">
+                <i class="material-icons mdc-text-field__icon">visibility</i>
+                <input class="mdc-text-field__input">
+                <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                  <div class="mdc-notched-outline__leading"></div>
+                  <div class="mdc-notched-outline__notch" style="">
+                    <label class="mdc-floating-label" style="">Label</label>
+                  </div>
+                  <div class="mdc-notched-outline__trailing"></div>
+                </div>
+              </div>
+              <div class="mdc-text-field-helper-line">
+                <div class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent">Assistive text</div>
+              </div>
+            </div>
+
+<div class="inline-text-field-container">
+      
+      <div class="mdc-text-field mdc-ripple-upgraded" style="--mdc-ripple-fg-size:119px; --mdc-ripple-fg-scale:1.82125; --mdc-ripple-fg-translate-start:-5.61719px, -38.5664px; --mdc-ripple-fg-translate-end:40px, -31.5px;">
+        
+        
+        <input class="mdc-text-field__input" autocorrect="off" autocomplete="off" spellcheck="false" id="demo-mdc-text-field" maxlength="524288">
+        
+      <div class="mdc-line-ripple" style="transform-origin: 53.5px center;"></div>
+      
+    <label for="demo-mdc-text-field" class="mdc-floating-label"><!---->Label<!----></label>
+  
+    
+      </div>
+      
+    </div>
+
+
+    <div class="mdc-text-field">
+  <input type="text" id="my-text-field" class="mdc-text-field__input">
+  <label class="mdc-floating-label" for="my-text-field">Hint text</label>
+  <div class="mdc-line-ripple"></div>
+</div>
+
+        <!-- JavaScript files (must be at the end of body!) -->
+        <script src="script.js"></script>
+        <script src="https://d3js.org/d3.v5.js"></script>
+
+    </body>
+</html>
+
+
+
