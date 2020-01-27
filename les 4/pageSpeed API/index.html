@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pagespeed API test</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+
+<div class="inputSpeed">
+<h1>PageSpeed Calculator</h1>
+
+ <label for="exampleFormControlInput1">URL waarvoor je PageSpeed wil berekenen</label>
+    <input type="text" class="form-control" id="input" placeholder="een URL https://www.example.be">
+    <small id="HelpBlock" class="form-text text-muted">
+      De url moet http protocol bevatten [copy paste van browserbalk ;)]<br> Het ophalen van de data kan 30 sec duren.
+</small>
+    <br>
+      <button type="button" id="submit" class="btn btn-primary mb-2">Confirm</button>
+</div>
+<div class="main-content" id='main-content'>
+
+    <h2>Documentatie over snelheid</h2>
+<div class="devsite-table-wrapper"><table>
+      <tbody><tr>
+        <th></th>
+        <th>Fast</th>
+        <th>Moderate</th>
+        <th>Slow</th>
+      </tr>
+      <tr>
+        <td>FCP</td>
+        <td>[0, 1000ms]</td>
+        <td>(1000ms, 3000ms]</td>
+        <td>over 3000ms</td>
+      </tr>
+      <tr>
+        <td>FID</td>
+        <td>[0, 100ms]</td>
+        <td>(100ms, 300ms]</td>
+        <td>over 300ms</td>
+      </tr>
+    </tbody></table></div>
+
+
+<br>
+<h2>Defenition of timing Metrics</h2>
+<ul>
+<li><strong>Time to </strong>first<strong> byte, or TTFB:</strong> The time it takes for the first byte of information to reach a visitor’s browser after a request to the server has been sent.</li><br>
+<li><strong>First Paint:&nbsp;</strong>when the browser renders pixels to the screen. Google thinks this is an important user-centric metric because it answers the question,&nbsp;<em><span style="text-decoration: underline;">is something happening</span>?&nbsp;</em></li><br>
+<li><strong>First Contentful Paint (FCP):&nbsp;</strong>measures the time from navigation to the time when the browser renders the first bit of content from the DOM. This is an important milestone for users because it provides feedback that the page is actually loading. It answers the question,&nbsp;<em><span style="text-decoration: underline;">is something happening that might be useful for me?</span>?&nbsp;</em></li><br>
+<li><strong>First Meaningful Paint:</strong> First DOM element is being loaded. Like Image or Text. Q?&nbsp;<em><span style="text-decoration: underline;">Is it useful</span>?</em></li><br>
+<li>
+<p id="time_to_interactive"><strong>Time to interactive: </strong>Q?&nbsp;<span style="text-decoration: underline;">Is it usable</span>?</p>
+</li>
+</ul>
+ 
+ <p><img class="size-large wp-image-2145 aligncenter" src="http://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-1024x507.jpg" alt="" width="840" height="416" srcset="https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-1024x507.jpg 1024w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-300x149.jpg 300w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-768x380.jpg 768w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-1440x713.jpg 1440w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-720x356.jpg 720w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-480x238.jpg 480w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-705x349.jpg 705w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-470x233.jpg 470w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-235x116.jpg 235w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-640x317.jpg 640w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-960x475.jpg 960w, https://humix.be/wp-content/uploads/2018/11/speed-metrics-resized-1200x594.jpg 1200w" sizes="(max-width: 840px) 100vw, 840px"></p>
+
+
+</div>
+
+<script>
+
+  let submitButton = document.getElementById("submit");
+  submitButton.addEventListener("click", run );
+
+
+function run() {
+  console.log("start getting manual");
+  const urlInput = document.getElementById("input").value;
+  console.log("url 1 =" + urlInput);
+  console.log("start getting");
+  const url = setUpQuery(urlInput);
+  fetch(url)
+    .then(response => response.json())
+    .then(json => {
+      // See https://developers.google.com/speed/docs/insights/v5/reference/pagespeedapi/runpagespeed#response
+      // to learn more about each of the properties in the response object.
+      showInitialContent(json.id);
+      // console.log(json.loadingExperience.metrics);
+      const cruxMetrics = {
+        "First Contentful Paint": json.loadingExperience.metrics.FIRST_CONTENTFUL_PAINT_MS.category,
+        "First Input Delay": json.loadingExperience.metrics.FIRST_INPUT_DELAY_MS.category
+      };
+      showCruxContent(cruxMetrics);
+      const lighthouse = json.lighthouseResult;
+      // console.log(lighthouse.audits['final-screenshot'].details.data);
+      var imagescreen = lighthouse.audits['final-screenshot'].details.data;
+      // console.log(imagescreen);
+      const lighthouseMetrics = {
+        'First Contentful Paint': lighthouse.audits['first-contentful-paint'].displayValue,
+        'Speed Index': lighthouse.audits['speed-index'].displayValue,
+        'Time To Interactive': lighthouse.audits['interactive'].displayValue,
+        'First Meaningful Paint': lighthouse.audits['first-meaningful-paint'].displayValue,
+        'First CPU Idle': lighthouse.audits['first-cpu-idle'].displayValue,
+        'Estimated Input Latency': lighthouse.audits['estimated-input-latency'].displayValue
+      };
+      showLighthouseContent(lighthouseMetrics);
+      showFinalImage(imagescreen);
+    });
+}
+
+function setUpQuery(urlInput) {
+  const api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
+  console.log("url 2=" + urlInput);
+  
+  const parameters = {
+    url: encodeURIComponent(urlInput)
+  };
+  let query = `${api}?`;
+  for (key in parameters) {
+    query += `${key}=${parameters[key]}`;
+  }
+  return query;
+}
+
+function showInitialContent(id) {
+  // document.body.innerHTML = '';
+  document.getElementById("main-content").innerHTML = '';
+  const title = document.createElement('h1');
+  title.textContent = 'PageSpeed Insights API';
+  document.body.appendChild(title);
+  const page = document.createElement('p');
+  page.textContent = `Page tested: ${id}`;
+  document.body.appendChild(page);
+}
+
+function showCruxContent(cruxMetrics) {
+  const cruxHeader = document.createElement('h2');
+  cruxHeader.textContent = "Chrome User Experience Report Results";
+  document.body.appendChild(cruxHeader);
+  for (key in cruxMetrics) {
+    const p = document.createElement('p');
+    p.textContent = `${key}: ${cruxMetrics[key]}`;
+    document.body.appendChild(p);
+  }
+}
+
+function showLighthouseContent(lighthouseMetrics) {
+  const lighthouseHeader = document.createElement('h2');
+  lighthouseHeader.textContent = "Lighthouse Results";
+  document.body.appendChild(lighthouseHeader);
+  for (key in lighthouseMetrics) {
+    const p = document.createElement('p');
+    p.textContent = `${key}: ${lighthouseMetrics[key]}`;
+    document.body.appendChild(p);
+  }
+}
+
+function showFinalImage(imagescreen) {
+  const finalImage = document.createElement('img');
+  // console.log("imagescreen = " + imagescreen);
+  // console.log(finalImage);
+  finalImage.src = imagescreen;
+  document.body.appendChild(finalImage);
+}
+
+</script>
+    <script src="script.js"></script>
+
+<img id="screenshot" scr="">
+
+
+  </body>
+</html>
+
+
+
